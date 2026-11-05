@@ -31,7 +31,7 @@ Never reverse an arrow, move an element across an ownership boundary, invent a r
 After previewing, classify a problem before changing anything:
 
 - If the wrong elements, boundary, relationship, description, or view scope appears, correct the DSL model.
-- If the model is truthful but placement, spacing, routing, labels, or text treatment is poor, report a renderer issue or feature request against `c4-beta2` with the model, view key, screenshot, expected reading, and actual problem.
+- If the model is truthful but placement, spacing, routing, labels, or text treatment is poor, report a renderer issue or feature request against `c4` with the model, view key, screenshot, expected reading, and actual problem.
 
 Use an explicit `"miyorgi.layoutRole" "actor"` only when an external software system genuinely acts as an entry-point actor. Do not use it to force prominence. See [modeling.md](references/modeling.md#human-and-software-actors).
 

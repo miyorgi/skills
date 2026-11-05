@@ -9,7 +9,7 @@ Use this skill as the entry point for Miyorgi product work. Identify which Miyor
 
 ## Available product skills
 
-At Beta2, Miyorgi has one product skill:
+Miyorgi currently has one product skill:
 
 - [C4](../c4/SKILL.md): create, update, check, and preview C4 architecture models.
 

@@ -46,4 +46,4 @@ adoption signal, not a count of active users.
 
 ## Status
 
-Beta2 is under active development. Treat the skill, supported DSL subset, and viewer interactions as versioned product behaviour. Check the linked C4 repository before relying on an experimental capability.
+Miyorgi C4 is under active development. Treat the skill, supported DSL subset, and viewer interactions as versioned product behaviour. Check the linked C4 repository before relying on an experimental capability.
