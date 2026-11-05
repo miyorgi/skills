@@ -1,5 +1,5 @@
 ---
-name: miyorgi-c4
+name: c4
 description: Create, update, check and preview C4 architecture models using Structurizr DSL and the Miyorgi C4 binary.
 ---
 
@@ -38,8 +38,8 @@ Use an explicit `"miyorgi.layoutRole" "actor"` only when an external software sy
 ## Check and preview
 
 ```sh
-miyorgi-c4 check --file workspace.dsl --json
-miyorgi-c4 serve --file workspace.dsl --view Containers
+miyorgi c4 check --file workspace.dsl --json
+miyorgi c4 serve --file workspace.dsl --view Containers
 ```
 
 Run `check` after editing. It is read-only and does not run TALA. Resolve syntax or model errors before previewing; review writing warnings against the evidence. A warning is a prompt for judgment, not permission to change meaning. Do not add words or guess technology merely to silence a warning. The writing reference explains the checks and their limits.

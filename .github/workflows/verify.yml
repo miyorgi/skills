@@ -1,0 +1,25 @@
+name: Verify skills
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check front matter and references
+        run: |
+          test -f c4/SKILL.md
+          test -f miyorgi/SKILL.md
+          grep -q '^name: c4$' c4/SKILL.md
+          grep -q '^name: miyorgi$' miyorgi/SKILL.md
+          test -f c4/references/modeling.md
+          test -f c4/references/writing.md
+          test -f c4/references/views.md
+          git diff --check
