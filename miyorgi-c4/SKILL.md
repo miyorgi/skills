@@ -5,15 +5,35 @@ description: Create, update, check and preview C4 architecture models using Stru
 
 # Miyorgi C4
 
-Keep the Structurizr DSL workspace as the source of truth. Translate the described architecture into accurate C4 abstractions; distinguish confirmed facts, assumptions and proposed changes. The skill is architecture-neutral: do not prescribe tiers, services, stores or communication patterns. The binary owns layout. Do not add coordinates, change ownership or shorten facts to make a diagram fit.
+Use this skill to model an architecture from evidence, then let the Miyorgi C4 binary turn that model into a diagram. Keep the Structurizr DSL workspace as the source of truth. The skill helps with meaning. The binary owns geometry.
 
-## Author or update
+The skill is architecture-neutral. Do not prescribe tiers, services, stores, event buses, or communication patterns. Model what the user describes. Distinguish confirmed facts, assumptions, and proposals.
 
-Read [modeling.md](references/modeling.md) when creating or changing model structure, views or shapes. Read [writing.md](references/writing.md) when creating or changing descriptions or relationship labels. These references define the supported DSL and caption conventions.
+## Model from evidence
 
-Preserve existing aliases, declaration order, relationship direction, unknown properties and facts outside the requested change. Prefer a small deterministic edit over rewriting the workspace. Keep full element descriptions; use `miyorgi.displayDescription` for a separate concise caption where needed. Write responsibilities and interactions as specific actions rather than lists of nouns. Do not invent a responsibility to make the wording more specific.
+Follow this workflow whenever you create or update a model.
 
-Choose the C4 kinds and boundaries from the architecture's purpose, responsibilities and ownership, using the modeling reference. Reuse the user's domain vocabulary and existing aliases. Create only the views needed for the request; supported view types are capabilities, not a required set. Read [views.md](references/views.md) for component, dynamic, sequence, deployment, native code or image views. Syntax examples illustrate notation, not an architecture to copy.
+1. Identify the question the requested diagram must answer. Examples include system context, container responsibilities, a component interaction, an ordered scenario, or a deployment environment. Choose only the view or views that answer that question.
+2. Extract the confirmed facts: roles, responsibilities, ownership, interactions, technologies, and deployment facts. Mark a material unknown instead of guessing. Keep a proposed architecture change separate from the current architecture.
+3. Classify each evidenced role using C4 meaning. A Person is a human role. A software system is a cohesive capability boundary. A Container is a running application or data store within that system. A Component is an internal responsibility or interface inside one container. Read [modeling.md](references/modeling.md) before changing structure, ownership, shapes, or views.
+4. Add or amend the smallest truthful DSL change. Preserve existing aliases, declaration order, relationship direction, unknown properties, and facts outside the request. Do not rewrite a workspace merely to make it look more uniform.
+5. Write a full source-grounded description for each changed element. Add `miyorgi.displayDescription` only when the visible responsibility needs a shorter caption. Write relationship labels as the directed action. Read [writing.md](references/writing.md) before changing descriptions or labels.
+6. Run `check`, then preview the requested view. Fix model inaccuracies in the DSL. Report a layout limitation without adding coordinates or changing architecture facts to make the diagram fit.
+
+Read [views.md](references/views.md) for component, dynamic, sequence, deployment, and image-view rules. Syntax examples illustrate notation. They do not prescribe an architecture to copy.
+
+## Model for meaning, preview for composition
+
+The layout engine uses truthful model facts to arrange a diagram. Relationship direction expresses who initiates or depends on an interaction. Ownership creates boundaries. View scope determines which elements belong together. These facts help layout, but they must remain true even when the resulting composition is awkward.
+
+Never reverse an arrow, move an element across an ownership boundary, invent a relationship, remove a necessary qualifier, or add coordinates to obtain a preferred position. Do not create a view solely to avoid an engine defect.
+
+After previewing, classify a problem before changing anything:
+
+- If the wrong elements, boundary, relationship, description, or view scope appears, correct the DSL model.
+- If the model is truthful but placement, spacing, routing, labels, or text treatment is poor, report a renderer issue or feature request against `c4-beta2` with the model, view key, screenshot, expected reading, and actual problem.
+
+Use an explicit `"miyorgi.layoutRole" "actor"` only when an external software system genuinely acts as an entry-point actor. Do not use it to force prominence. See [modeling.md](references/modeling.md#human-and-software-actors).
 
 ## Check and preview
 
