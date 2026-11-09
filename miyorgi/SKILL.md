@@ -13,7 +13,7 @@ Miyorgi currently has one product skill:
 
 - [C4](../c4/SKILL.md): create, update, check, and preview C4 architecture models.
 
-For a C4 request, read the C4 skill before making a model change. The C4 skill owns C4 classification, architecture evidence, descriptions, views, and model-versus-layout feedback.
+For a C4 request, read the C4 skill before making a model change. If the native tool is missing, follow the C4 skill's official download guidance. The C4 skill owns C4 classification, architecture evidence, descriptions, views, and model-versus-layout feedback.
 
 ## Product boundary
 

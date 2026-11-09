@@ -72,3 +72,63 @@ Apply shapes through tags and element shape styles. Match inspected architecture
 | No specific presentation evidence | Default rounded box; preserve any explicit shape |
 
 Supported names: `Box`, `RoundedBox`, `Circle`, `Ellipse`, `Hexagon`, `Diamond`, `Person`, `Robot`, `Cylinder`, `Bucket`, `Pipe`, `Folder`, `Component`, `WebBrowser`, `Window`, `Terminal`, `Shell`, `MobileDevicePortrait`, `MobileDeviceLandscape`. Honor explicit user choices among these shapes. Shapes change presentation, not C4 kinds or inferred responsibilities. Arbitrary colors, themes and other Structurizr style properties are not supported.
+
+## Model files and saved layout
+
+Use the DSL workspace as the normal editable model file. Do not generate a workspace.json companion merely for checking, rendering or brand settings. Scene data produced in memory is an implementation detail, not an extra model for the user to maintain.
+
+A user migrating from Structurizr may explicitly want to retain manually adjusted positions or routes stored in a JSON workspace. Preserve that original file. The current Miyorgi CLI does not import saved manual layouts; state the limitation instead of claiming an automatic render preserves those adjustments.
+
+## Brand colours
+
+The source is `workspace.dsl`. Use a `properties` block on the workspace for a
+company default, or on a software system, container, component or person for an
+override:
+
+```structurizr
+properties {
+    "miyorgi.brandColor" "#2463EB"
+}
+```
+
+Accept exactly six hexadecimal digits. If the user supplies a palette or brand
+guidelines, use its primary colour for the appropriate owner. Ask which primary
+colour to use if the guidelines leave that ambiguous. Do not map palette colours
+to architectural roles or invent brands. Named colours, gradients, alpha values
+and arbitrary themes are unsupported. Without an explicit choice, use grey.
+
+The nearest owning element's brand overrides the workspace default. Logical
+container instances keep their logical owner's brand in deployment views.
+Actors using more than one distinct owning software system stay grey, even if
+the systems share the same brand or the workspace has a default brand. Multiple
+connections to containers of one system count as one system. For one system,
+an actor can inherit its brand. Set the actor's own brand property for an
+explicit override. This applies to people and software systems marked with
+`miyorgi.layoutRole` = `actor`. The rule uses the complete model so changing
+views does not recolour actors.
+
+All C4 levels use one brand scheme, with white interiors and no depth shading.
+The supplied base colour is used for outlines and text when legible against
+white. The renderer darkens it only as needed: at least 3:1 for outlines and
+4.5:1 for text. Thus pale brands may need darker text than outlines. Expanded
+boundaries use the same white interior and brand outline/text. Shared-brand
+groups use that brand; mixed-brand groups remain neutral. People retain the
+multi-system neutral rule above. Without a brand, use neutral grey outlines
+and dark text. External image diagrams retain their original artwork.
+
+Relationships use their source element's outline colour for the line and
+arrowhead, and the source text colour for the action and technology labels.
+Return messages follow their actual source. Colour does not change routing.
+
+For an explicitly requested exact-brand comparison, set
+`"miyorgi.brandContrast" "none"` in workspace or element properties. Outlines
+and text then use the exact colour with no adjustment; source relationships
+inherit it too. `"auto"` is the default contrast-aware mode. Do not disable
+contrast adjustment unless the user asks.
+
+For a size-aware brand treatment, use `"miyorgi.brandContrast" "readable"`.
+Outlines retain the exact brand. Larger bold titles retain it where possible,
+darkening only to reach 3:1 on white. Smaller text keeps the brand hue but is
+darkened to reach 4.5:1. Relationships use source-coloured strokes with a 3:1
+minimum and labels in the source's smaller-text colour. There is no C4-level
+shading. Geometry and typography are unchanged.

@@ -32,7 +32,20 @@ The references explain the detailed rules:
 
 The skill guides model authoring. The binary checks the model and turns it into a diagram. The DSL workspace remains the source of truth.
 
-## Install through skills.sh
+## Start with the native tool
+
+Download Miyorgi from [miyorgi.com/c4](https://miyorgi.com/c4#download), extract the
+archive, and run setup from your project folder:
+
+```sh
+miyorgi c4 setup
+```
+
+The binary includes the C4 skill and installs it for Codex or Claude Code without
+Node or a separate package manager. Setup records the executable path for the
+assistant. Use the full executable path if it is not on PATH.
+
+## Install the skill first through skills.sh
 
 When this repository is public at `github.com/miyorgi/skills`, users can install
 the public skills through skills.sh:
@@ -47,3 +60,7 @@ adoption signal, not a count of active users.
 ## Status
 
 Miyorgi C4 is under active development. Treat the skill, supported DSL subset, and viewer interactions as versioned product behaviour. Check the linked C4 repository before relying on an experimental capability.
+
+The skill checks for the native tool before validation or preview. If it is
+missing, the skill points to the official binary download. The normal model
+source is a single workspace.dsl file; a workspace.json sidecar is not required.

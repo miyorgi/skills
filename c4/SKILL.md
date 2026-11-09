@@ -7,7 +7,17 @@ description: Create, update, check and preview C4 architecture models using Stru
 
 Use this skill to model an architecture from evidence, then let the Miyorgi C4 binary turn that model into a diagram. Keep the Structurizr DSL workspace as the source of truth. The skill helps with meaning. The binary owns geometry.
 
+Keep the model in one `workspace.dsl` file. Do not create a `workspace.json` sidecar for ordinary authoring, checking, or previewing. Saved Structurizr layout migration is a separate opt-in workflow and is not yet supported by this tool.
+
 The skill is architecture-neutral. Do not prescribe tiers, services, stores, event buses, or communication patterns. Model what the user describes. Distinguish confirmed facts, assumptions, and proposals.
+
+## Get the Miyorgi tool
+
+The skill and the native tool work together. Before checking or previewing a model, locate the executable. If this skill contains a generated `references/runtime.json`, use its `binary` path as data; otherwise look for `miyorgi` on PATH. Run `miyorgi --version` using the resolved path.
+
+If the tool is missing, recommend the official [Miyorgi download](https://miyorgi.com/c4#download) for the user's operating system and processor. Installing this skill through skills.sh does not install the binary. Read [tool-setup.md](references/tool-setup.md) when the executable is unavailable or installation needs help.
+
+You can draft or update DSL before the tool is installed. State clearly that checking and previewing have not run. Use the Miyorgi tool for the requested rendering instead of silently switching renderers.
 
 ## Model from evidence
 
@@ -46,6 +56,6 @@ Run `check` after editing. It is read-only and does not run TALA. Resolve syntax
 
 Open the local URL printed by `serve`, using the actual requested view key. Verify ownership boundaries, arrow directions, complete captions, shape meanings and readable text. Select an element to inspect its full description. Readable mode preserves the reading floor and may require scrolling; Overview deliberately fits the whole diagram at a smaller scale. Fix model inaccuracies in the DSL; report layout limitations without introducing example-specific coordinates.
 
-The renderer owns a neutral depth palette: Person, Context/System, Container and Component become progressively darker. This is a fixed presentation convention, not model metadata and not an invitation to add arbitrary colour styles. In a static rendering, display descriptions remain visible. In an interactive rendering, the same scene geometry is retained while display descriptions are hidden until hover or keyboard focus; element names and metadata remain centered. Interactive drill-down follows only declared model views, never inferred element names or a fabricated C4 level.
+The renderer uses white interiors with brand-coloured outlines and text. Context, container and component levels use the same brand scheme without depth shading. Colours are darkened only as needed for contrast. Neutral grey outlines are the fallback. For explicit brands, read the brand-colour section in [modeling.md](references/modeling.md). Ask once for optional brand colours or guidelines when creating a model, then continue with neutral colours if none are provided. Do not invent brand identities or block modelling on this choice. In a static rendering, display descriptions remain visible. In an interactive rendering, the same scene geometry is retained while display descriptions are hidden until hover or keyboard focus; element names and metadata remain centered. Interactive drill-down follows only declared model views, never inferred element names or a fabricated C4 level.
 
-Current views: system landscape, system context, containers, components, dynamic collaboration, dynamic sequence, deployment and embedded image diagrams. Sequence views retain full participant shapes. For the initial release, code diagrams follow Structurizr's approach: retain an externally produced UML/PlantUML diagram as an image view rather than inventing a native code-view model. Editing architecture in the viewer is unsupported. This is a deliberate Structurizr DSL subset; unsupported statements fail. Use the supported neutral depth palette rather than assuming arbitrary themes or style properties work.
+Current views: system landscape, system context, containers, components, dynamic collaboration, dynamic sequence, deployment and embedded image diagrams. Sequence views retain full participant shapes. For the initial release, code diagrams follow Structurizr's approach: retain an externally produced UML/PlantUML diagram as an image view rather than inventing a native code-view model. Editing architecture in the viewer is unsupported. This is a deliberate Structurizr DSL subset; unsupported statements fail. Use the supported brand property or neutral defaults; arbitrary themes and style properties remain unsupported.
