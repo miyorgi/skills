@@ -1,8 +1,12 @@
 # Get the native tool
 
-The official download page is https://miyorgi.com/c4#download. Choose the archive matching the user's operating system and processor. Public native targets are macOS Apple Silicon, macOS Intel, and Windows x64. Published release metadata is at https://downloads.miyorgi.com/c4/latest.json and includes archive URLs and SHA-256 checksums. Availability is shown on the download page; do not invent release URLs or claim an unpublished release is available.
+The current installation route is Homebrew on macOS (Apple silicon or Intel):
 
-Extract the archive. The executable is `bin/miyorgi` on macOS or `bin/miyorgi.exe` on Windows. Use that path directly, or a `miyorgi` already on PATH. When downloading programmatically, use the official published release metadata and verify its checksum before executing the downloaded file.
+```sh
+brew install --cask miyorgi/tap/c4
+```
+
+Resolve `miyorgi` on PATH and run `miyorgi --version`. The official getting-started page is https://miyorgi.com/c4#download. Do not offer Windows or Docker installation while those releases are unavailable. Do not ask users to compile the private implementation repository.
 
 ## Starting from the binary
 
@@ -18,6 +22,6 @@ For a non-interactive setup, use `miyorgi c4 setup --agent codex` or `miyorgi c4
 
 ## Starting from the public skill
 
-A user who already installed the skill only needs the tool to check and preview. Use the downloaded executable's path directly; reinstalling the skill is optional. Prefer an official binary download over asking the user to compile the private implementation repository.
+A user who already installed the skill only needs the tool to check and preview. Install the tool with Homebrew, then use `miyorgi` on PATH; reinstalling the skill is optional. Do not replace an existing project skill merely to locate the executable.
 
-If no matching download is published yet, report that limitation and continue only the modelling work that does not need the tool. Never report a check or diagram preview as successful without running the executable.
+If installation is unavailable in the user’s environment, report that limitation and continue only the modelling work that does not need the tool. Never report a check or diagram preview as successful without running the executable.
