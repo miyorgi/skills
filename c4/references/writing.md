@@ -51,7 +51,7 @@ Do not infer protocol or reverse an arrow to improve grammar or layout. A reques
 
 ## Review writing diagnostics
 
-`miyorgi-c4 check --file workspace.dsl --json` validates the model without layout. Its JSON report has `version`, `valid` and `diagnostics`; each diagnostic has `severity`, `code`, `message` and relevant element/relationship/view/field identifiers. Invalid input or model errors exit nonzero; valid models exit zero even with warnings.
+`miyorgi c4 check --file workspace.dsl --json` validates the model without layout. Its JSON report has `version`, `valid` and `diagnostics`; each diagnostic has `severity`, `code`, `message` and relevant element/relationship/view/field identifiers. Invalid input or model errors exit nonzero; valid models exit zero even with warnings.
 
 Writing warnings are advisory: `caption.missing`, `caption.too_long` (over 14 whitespace-separated words), `caption.multiline`, `caption.vague`, `caption.noun_phrase` and `description.missing`. Vague/noun-phrase checks recognize a small set of common patterns, not arbitrary English grammar. They do not prove factual accuracy, ownership, good writing or visual quality.
 

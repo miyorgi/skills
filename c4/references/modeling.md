@@ -48,7 +48,7 @@ Use one declaration per line and braces on their own closing lines. The compact 
 - `workspace "Name" { model { ... } views { ... } }`.
 - `alias = person "Name" "Description"` and `alias = softwareSystem "Name" "Description"`.
 - `alias = container "Name" "Description" "Technology"` nested inside its software system; technology may be omitted when unknown.
-- `alias = component "Name" "Description" "Technology"` nested inside its container. Component, dynamic, sequence, deployment and image view syntax is in [views.md](views.md).
+- `alias = component "Name" "Description" "Technology"` nested inside its container. Component, dynamic, sequence, deployment, native code and image view syntax is in [views.md](views.md).
 - `group "Name" { ... }` for a single grouping level; nested groups are unsupported.
 - Element blocks with `tags "Tag1,Tag2"` and `properties { "key" "value" }`, with each property on its own line. Unknown element properties are preserved; duplicate keys fail.
 - `source -> target "Action label" "Technology"`; declare both endpoints first. Technology is optional. Relationship property/style blocks are unsupported.
@@ -97,8 +97,18 @@ colour to use if the guidelines leave that ambiguous. Do not map palette colours
 to architectural roles or invent brands. Named colours, gradients, alpha values
 and arbitrary themes are unsupported. Without an explicit choice, use grey.
 
-The nearest owning element's brand overrides the workspace default. Logical
-container instances keep their logical owner's brand in deployment views.
+The nearest owning element's brand overrides the workspace default. Mark a
+separately owned third-party software system with `tags "External"`. Use this tag
+for ownership. A bank-owned system still belongs to the bank when shown outside
+another system's diagram boundary.
+
+An `External` system and its descendants use neutral grey unless a brand colour
+is set on that system or a descendant. Set a provider's brand on its own
+software system when the user supplies a colour. Preserve the `External` tag
+when updating the provider. Logical instances keep the colour of the system or
+container they instantiate in deployment views. Older binaries, including
+0.1.0-beta.2, may still inherit workspace colours for `External`; verify the
+actual preview before claiming this neutral treatment is available.
 Actors using more than one distinct owning software system stay grey, even if
 the systems share the same brand or the workspace has a default brand. Multiple
 connections to containers of one system count as one system. For one system,

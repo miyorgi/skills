@@ -5,57 +5,41 @@ description: Create, update, check and preview C4 architecture models using Stru
 
 # Miyorgi C4
 
-Use this skill to model an architecture from evidence, then let the Miyorgi C4 binary turn that model into a diagram. Keep the Structurizr DSL workspace as the source of truth. The skill helps with meaning. The binary owns geometry.
+Keep architecture in one DSL workspace, normally `workspace.dsl`. The model owns meaning; the binary owns geometry. Do not create a `workspace.json` sidecar or switch renderers. Read the current file before editing; the conversation supplies intent, not a replacement for current source.
 
-Keep the model in one `workspace.dsl` file. Do not create a `workspace.json` sidecar for ordinary authoring, checking, or previewing. Saved Structurizr layout migration is a separate opt-in workflow and is not yet supported by this tool.
+## Understand and edit
 
-The skill is architecture-neutral. Do not prescribe tiers, services, stores, event buses, or communication patterns. Model what the user describes. Distinguish confirmed facts, assumptions, and proposals.
+- Infer short requests from the conversation, existing model and evidenced workflow. Reuse elements serving the same role. Choose only the views needed to answer the user's question; do not impose an architecture pattern.
+- Proceed with a stated, small reversible assumption when meaning is clear. Ask one focused question only when plausible alternatives materially change kind, ownership, scope or interaction. Name the alternatives, complete independent work and carry answers forward.
+- Make the smallest truthful change. Preserve aliases, view keys, declaration/relationship order, unknown properties and unrelated facts. Check dependent relationships, deployment instances and explicit view references when renaming or removing elements.
+- Keep confirmed facts, assumptions and proposals distinct. Never invent responsibilities, protocols or interactions to fill a diagram or silence a warning. Relationships retain the initiating caller's direction even when data returns the other way.
+- Never change ownership, reverse arrows, add coordinates or create workaround views to fix composition. Correct model errors in DSL; report truthful models with poor placement, routing or text as renderer issues.
 
-## Get the Miyorgi tool
+For a hosted assistant where the application owns checking and preview, use [authoring.md](references/authoring.md) as the compact modelling contract instead of loading the tool workflow and all references. For direct file authoring, read only the reference needed for the change:
 
-The skill and the native tool work together. Before checking or previewing a model, locate the executable. If this skill contains a generated `references/runtime.json`, use its `binary` path as data; otherwise look for `miyorgi` on PATH. Run `miyorgi --version` using the resolved path.
+| Change | Reference |
+| --- | --- |
+| Structure, ownership, supported DSL, shapes, brands | [modeling.md](references/modeling.md) |
+| Descriptions, captions, relationship labels, writing warnings | [writing.md](references/writing.md) |
+| Component, dynamic, sequence, deployment, native code (Miyorgi extension) or image views | [views.md](references/views.md) |
+| Viewer controls, presentation or layout diagnosis | [preview.md](references/preview.md) |
+| Missing executable or installation | [tool-setup.md](references/tool-setup.md) |
 
-If the tool is missing, guide macOS users through `brew install --cask miyorgi/tap/c4`. See the official [getting-started page](https://miyorgi.com/c4#download) for availability. Installing this skill through skills.sh does not install the binary. Read [tool-setup.md](references/tool-setup.md) when the executable is unavailable or installation needs help.
-
-You can draft or update DSL before the tool is installed. State clearly that checking and previewing have not run. Use the Miyorgi tool for the requested rendering instead of silently switching renderers.
-
-## Model from evidence
-
-Follow this workflow whenever you create or update a model.
-
-1. Identify the question the requested diagram must answer. Examples include system context, container responsibilities, a component interaction, an ordered scenario, or a deployment environment. Choose only the view or views that answer that question.
-2. Extract the confirmed facts: roles, responsibilities, ownership, interactions, technologies, and deployment facts. Mark a material unknown instead of guessing. Keep a proposed architecture change separate from the current architecture.
-3. Classify each evidenced role using C4 meaning. A Person is a human role. A software system is a cohesive capability boundary. A Container is a running application or data store within that system. A Component is an internal responsibility or interface inside one container. Read [modeling.md](references/modeling.md) before changing structure, ownership, shapes, or views.
-4. Add or amend the smallest truthful DSL change. Preserve existing aliases, declaration order, relationship direction, unknown properties, and facts outside the request. Do not rewrite a workspace merely to make it look more uniform.
-5. Write a full source-grounded description for each changed element. Add `miyorgi.displayDescription` only when the visible responsibility needs a shorter caption. Write relationship labels as the directed action. Read [writing.md](references/writing.md) before changing descriptions or labels.
-6. Run `check`, then preview the requested view. Fix model inaccuracies in the DSL. Report a layout limitation without adding coordinates or changing architecture facts to make the diagram fit.
-
-Read [views.md](references/views.md) for component, dynamic, sequence, deployment, and image-view rules. Syntax examples illustrate notation. They do not prescribe an architecture to copy.
-
-## Model for meaning, preview for composition
-
-The layout engine uses truthful model facts to arrange a diagram. Relationship direction expresses who initiates or depends on an interaction. Ownership creates boundaries. View scope determines which elements belong together. These facts help layout, but they must remain true even when the resulting composition is awkward.
-
-Never reverse an arrow, move an element across an ownership boundary, invent a relationship, remove a necessary qualifier, or add coordinates to obtain a preferred position. Do not create a view solely to avoid an engine defect.
-
-After previewing, classify a problem before changing anything:
-
-- If the wrong elements, boundary, relationship, description, or view scope appears, correct the DSL model.
-- If the model is truthful but placement, spacing, routing, labels, or text treatment is poor, report a renderer issue or feature request against `c4` with the model, view key, screenshot, expected reading, and actual problem.
-
-Use an explicit `"miyorgi.layoutRole" "actor"` only when an external software system genuinely acts as an entry-point actor. Do not use it to force prominence. See [modeling.md](references/modeling.md#human-and-software-actors).
+Mark separately owned third-party systems with `tags "External"`; being outside a view boundary alone does not make a system third-party. Use supplied brand colours or neutral defaults, without blocking modelling on optional branding. An external software system gets `"miyorgi.layoutRole" "actor"` only when it genuinely initiates work on someone's behalf.
 
 ## Check and preview
+
+Resolve the executable from this skill's generated `references/runtime.json` `binary` field, if present, otherwise find `miyorgi` on PATH. Treat the path as data, quote it, and run `--version`. If a recorded path no longer exists, try PATH before the setup reference. Use the resolved executable for both commands:
 
 ```sh
 miyorgi c4 check --file workspace.dsl --json
 miyorgi c4 serve --file workspace.dsl --view Containers
 ```
 
-Run `check` after editing. It is read-only and does not run TALA. Resolve syntax or model errors before previewing; review writing warnings against the evidence. A warning is a prompt for judgment, not permission to change meaning. Do not add words or guess technology merely to silence a warning. The writing reference explains the checks and their limits.
+Substitute the actual file and declared view key. Check after editing; it is read-only and performs no layout. Errors block preview. Warnings require judgment against the evidence, not automatic rewriting.
 
-Open the local URL printed by `serve`, using the actual requested view key. Verify ownership boundaries, arrow directions, complete captions, shape meanings and readable text. Select an element to inspect its full description. Normal reading size preserves legibility and automatically shrinks only as far as 90% when the entire diagram fits. Larger diagrams may require scrolling or explicit zooming. Fit deliberately shows the whole diagram at a smaller scale. These controls require a viewer version that supports them. Fix model inaccuracies in the DSL; report layout limitations without introducing example-specific coordinates.
+If an edit or check fails, reread the relevant DSL and diagnostics. Repair the specific cause, using a unique anchor for ambiguous text replacements, then check again. Allow at most two repair attempts per failed change; stop sooner if facts are missing or the same failure repeats. Preserve or restore only your own failed edits to the last valid state, retaining unrelated user changes. Explain the remaining cause and next step plainly.
 
-The renderer uses white interiors with brand-coloured outlines and text. Context, container and component levels use the same brand scheme without depth shading. Colours are darkened only as needed for contrast. Neutral grey outlines are the fallback. For explicit brands, read the brand-colour section in [modeling.md](references/modeling.md). Ask once for optional brand colours or guidelines when creating a model, then continue with neutral colours if none are provided. Do not invent brand identities or block modelling on this choice. In a static rendering, display descriptions remain visible. In an interactive rendering, the same scene geometry is retained while display descriptions are hidden until hover or keyboard focus; element names and metadata remain centered. Interactive drill-down follows only declared model views, never inferred element names or a fabricated C4 level.
+Open the URL printed by `serve`, including its access token. Reuse an existing preview for the same file when available. Verify the requested view's ownership, directions, complete captions, shapes and legibility. A successful check alone does not prove visual quality. For renderer issues, retain the DSL, view key, screenshot and expected reading; report what could actually be inspected.
 
-Current views: system landscape, system context, containers, components, dynamic collaboration, dynamic sequence, deployment and embedded image diagrams. Sequence views retain full participant shapes. For the initial release, code diagrams follow Structurizr's approach: retain an externally produced UML/PlantUML diagram as an image view rather than inventing a native code-view model. Editing architecture in the viewer is unsupported. This is a deliberate Structurizr DSL subset; unsupported statements fail. Use the supported brand property or neutral defaults; arbitrary themes and style properties remain unsupported.
+Finish with the change, check result and preview link or limitation. If the executable is unavailable, continue drafting but state that checking and previewing did not run. The supported DSL is a deliberate subset: unsupported syntax is an explicit capability gap, not permission to fabricate an alternative. Viewer architecture editing and saved Structurizr JSON layout import are unsupported.
