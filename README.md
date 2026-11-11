@@ -34,16 +34,23 @@ The skill guides model authoring. The binary checks the model and turns it into 
 
 ## Start with the native tool
 
-Download Miyorgi from [miyorgi.com/c4](https://miyorgi.com/c4#download), extract the
-archive, and run setup from your project folder:
+The native tool is currently available for macOS on Apple silicon and Intel.
+Install it with Homebrew:
+
+```sh
+brew install --cask miyorgi/tap/c4
+```
+
+Then run setup from your project folder:
 
 ```sh
 miyorgi c4 setup
 ```
 
 The binary includes the C4 skill and installs it for Codex or Claude Code without
-Node or a separate package manager. Setup records the executable path for the
-assistant. Use the full executable path if it is not on PATH.
+Node. Setup records the executable path for the assistant. See
+[tool setup](c4/references/tool-setup.md) for setup options or if you already
+installed the skill.
 
 ## Install the skill first through skills.sh
 
@@ -62,5 +69,5 @@ adoption signal, not a count of active users.
 Miyorgi C4 is under active development. Treat the skill, supported DSL subset, and viewer interactions as versioned product behaviour. Check the linked C4 repository before relying on an experimental capability.
 
 The skill checks for the native tool before validation or preview. If it is
-missing, the skill points to the official binary download. The normal model
-source is a single workspace.dsl file; a workspace.json sidecar is not required.
+missing, the skill gives Homebrew installation instructions for macOS. The normal
+model source is a single workspace.dsl file; a workspace.json sidecar is not required.
