@@ -7,6 +7,12 @@ description: Create, update, check and preview C4 architecture models using Stru
 
 Keep architecture in one DSL workspace, normally `workspace.dsl`. The model owns meaning; the binary owns geometry. Do not create a `workspace.json` sidecar or switch renderers. Read the current file before editing; the conversation supplies intent, not a replacement for current source.
 
+## Conversation
+
+Answer first in plain language. For routine edits, default to one or two sentences describing the result, with the check result and preview link or a material limitation. For a simple explanation, give a short overview of the main actors and flow; do not inventory every element and relationship. Expand when the user asks for detail or when a decision needs it.
+
+Omit repeated setup, tool narration, assurances about unchanged parts, and automatic offers of more help. Keep any necessary assumption brief. Ask only the focused clarification needed to resolve a material ambiguity, as described below. Concise replies must still disclose failed checks, missing evidence, or limitations that affect the result; never shorten model descriptions or skip verification to shorten the conversation.
+
 ## Understand and edit
 
 - Infer short requests from the conversation, existing model and evidenced workflow. Reuse elements serving the same role. Choose only the views needed to answer the user's question; do not impose an architecture pattern.
