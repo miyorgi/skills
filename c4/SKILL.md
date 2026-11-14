@@ -41,7 +41,7 @@ For a hosted assistant where the application owns checking and preview, use [aut
 | Viewer controls, presentation or layout diagnosis | [preview.md](references/preview.md) |
 | Missing executable or installation | [tool-setup.md](references/tool-setup.md) |
 
-Mark separately owned third-party systems with `tags "External"`; being outside a view boundary alone does not make a system third-party. Use supplied brand colours or neutral defaults, without blocking modelling on optional branding. An external software system gets `"miyorgi.layoutRole" "actor"` only when it genuinely initiates work on someone's behalf.
+Mark separately owned third-party systems with `tags "External"`; being outside a view boundary alone does not make a system third-party. When adding a clearly identified brand, use its primary colour when you can establish it confidently. Preserve existing colours and explicit user choices. See [brand colours](references/modeling.md#brand-colours). An external software system gets `"miyorgi.layoutRole" "actor"` only when it genuinely initiates work on someone's behalf.
 
 ## Check and preview
 

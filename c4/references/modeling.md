@@ -89,11 +89,25 @@ properties {
 }
 ```
 
-Accept exactly six hexadecimal digits. If the user supplies a palette or brand
-guidelines, use its primary colour for the appropriate owner. Ask which primary
-colour to use if the guidelines leave that ambiguous. Do not map palette colours
-to architectural roles or invent brands. Named colours, gradients, alpha values
-and arbitrary themes are unsupported. Without an explicit choice, use grey.
+Use a six-digit hex value. An explicit user preference, including a supplied
+palette or neutral styling, takes priority. Use the palette's designated primary
+colour when one is given. Preserve colours already set in the DSL unless the
+user asks to update them.
+
+When adding or identifying a real company, product or service, automatically
+look for its primary brand colour. Confirm the identity from the model and
+conversation, then prefer the owner's brand guidelines or official assets when
+lookup is available. Use a confidently known primary colour if lookup is
+unavailable. Otherwise use neutral grey and continue. A generic provider,
+fictional name, ambiguous brand or technology choice alone does not establish
+a brand. For example, hosting a bank's API on AWS leaves the API in the bank's
+palette. Ask about a palette only when the user wants a specific treatment and
+the choice matters.
+
+Apply the colour at the narrowest owning boundary it represents. Use a workspace
+default for a workspace dedicated to that brand. Set a separately branded system
+or product's colour on its own element, letting its descendants inherit it.
+Keep enterprise-wide defaults neutral when several organisations share the model.
 
 The nearest owning element's brand overrides the workspace default. Mark a
 separately owned third-party software system with `tags "External"`. Use this tag
@@ -102,8 +116,8 @@ another system's diagram boundary.
 
 An `External` system and its descendants use neutral grey unless a brand colour
 is set on that system or a descendant. Set a provider's brand on its own
-software system when the user supplies a colour. Preserve the `External` tag
-when updating the provider. Logical instances keep the colour of the system or
+software system once its brand colour is supplied or established. Preserve the
+`External` tag when updating the provider. Logical instances keep the colour of the system or
 container they instantiate in deployment views. Older binaries, including
 0.1.0-beta.2, may still inherit workspace colours for `External`; verify the
 actual preview before claiming this neutral treatment is available.
