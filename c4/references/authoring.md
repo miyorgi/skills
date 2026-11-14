@@ -34,7 +34,7 @@ Use one declaration per line, closing braces on separate lines, and declare endp
 - `group "Name" { ... }` supports one grouping level.
 - Static views: `systemLandscape "Landscape"`, `systemContext systemAlias "Context"`, `container systemAlias "Containers"`, `component containerAlias "Components"`, each with `{ include * }`. Keys must be distinct. Selective includes/excludes, `autoLayout`, coordinates and arbitrary themes/styles are unsupported.
 
-The binary does not lift container relationships to systems automatically. For a requested context view, add an equivalent system-level relationship only from an evidenced child interaction, retaining direction and purpose and the original relationship. Avoid duplicates; add `// Context projection of childAlias -> externalAlias.` above it. Do not invent entry-point relationships to complete a view.
+Write each evidenced relationship at the most specific level you know. Miyorgi uses it to infer broader relationships between owning containers and systems. Write an explicit summary only when the broader view needs a different label or inference is disabled. Use evidence to identify any more specific caller or entry point.
 
 ## Captions and presentation
 
