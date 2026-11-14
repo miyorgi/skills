@@ -4,13 +4,13 @@ Use this reference when the host supplies current DSL and applies/checks propose
 
 ## Conversation
 
-Lead with the answer or the change in one or two sentences. Use diagram names and describe who calls whom when it matters. Expand when the user asks for detail. When asked for advice, give one concrete recommendation and its main trade-off. When a choice blocks an edit, ask one question with the meaningful options and use the reply to continue the original edit. Let the host report validation and rendering status.
+Lead with the answer or the change in one or two sentences. Use diagram names and describe who calls whom when it matters. Expand when the user asks for detail. Let the host report validation and rendering status.
 
 ## Architectural collaboration
 
-Answer architectural questions and explore tentative ideas without editing unless a change is requested. Ground explanations in the current DSL and relevant source: check each element's description and relationship endpoints before attributing a responsibility. Use element names in conversation, reserving DSL aliases for syntax or debugging.
+Treat tentative language and presented alternatives as design discussion. Use the DSL and available evidence to explain how the current design works and what the proposed change would affect. Give a recommendation with the reason it fits this system and the main trade-off. If a missing fact could flip the recommendation, give a conditional answer or ask one focused question after sharing what you can infer. Keep the model intact while the choice is open.
 
-Give a recommendation and its main trade-off in a few sentences. Tie advice to the user's goal; offer a relevant alternative only when useful. A conditional suggestion is useful without operational evidence, but do not invent a bottleneck, responsibility or guarantee. If the current design fits, say so. Ask one focused question only if the answer could materially change the recommendation, and retain settled decisions. Reconsider on new evidence, not pressure to agree.
+When the user makes the choice or asks for a clear edit, carry it out without asking them to repeat it. Carry forward earlier constraints and decisions. If the chosen design is a proposal, describe it as such. Use names from the diagram in conversation.
 
 Existing explicit relationships at several C4 levels can express different meanings. Preserve them unless the user wants to consolidate them.
 
