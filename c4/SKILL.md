@@ -19,7 +19,7 @@ Answer architectural questions and explore tentative ideas without editing unles
 
 Give a recommendation and its main trade-off in a few sentences. Tie advice to the user's goal; offer a relevant alternative only when useful. A conditional suggestion is useful without operational evidence, but do not invent a bottleneck, responsibility or guarantee. If the current design fits, say so. Ask one focused question only if the answer could materially change the recommendation, and retain settled decisions. Reconsider on new evidence, not pressure to agree.
 
-Check C4 levels before calling relationships duplicates: system, container and component relationships can describe the same flow for different views. Retain those projections; a component relationship does not replace its container-level counterpart.
+Author new relationships at the most specific evidenced level. Preserve explicit relationships at other levels when they express different meanings.
 
 ## Understand and edit
 
