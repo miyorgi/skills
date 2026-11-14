@@ -4,6 +4,35 @@ Choose a view for the question being answered. More detail is not automatically
 more useful. Reuse one logical model across views; only deployment instances add
 physical identities. Do not invent components or infrastructure to populate a view.
 
+## Focused views
+
+Use a static view’s purpose and intended audience to decide what belongs in it.
+Keep the entry point and the real dependencies that explain the flow. If an
+omission would change what the reader understands, keep the element visible or
+ask one focused question. Keep the full view available alongside a named focus.
+
+Use `tags "OperationsOnly"` on elements dedicated to running or supporting the
+system, such as a backup scheduler or telemetry collector. Keep mixed-purpose
+elements visible. A fraud check that can stop payment and a queue that delivers
+customer notifications both belong in a view that explains those flows.
+
+```structurizr
+container shop "CheckoutReview" {
+    title "Checkout review"
+    description "Shows how shoppers place and pay for an order."
+    include *
+    exclude "element.tag==OperationsOnly"
+    exclude returnsPortal
+}
+```
+
+Here, `returnsPortal` must be an existing DSL alias. Use an explicit exclusion
+for an element irrelevant to this one view. Tag exclusions are reusable across
+views. Remove either exclusion to restore the elements and their connections.
+Keep the original relationships in the model. For deployment and ordered
+interactions, author a distinct view for the scenario instead of filtering an
+existing sequence or topology.
+
 ## Components
 
 A component is a cohesive internal responsibility inside a container. It does not

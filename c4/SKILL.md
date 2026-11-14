@@ -19,6 +19,8 @@ Answer architectural questions and explore tentative ideas without editing unles
 
 Give a recommendation and its main trade-off in a few sentences. Tie advice to the user's goal; offer a relevant alternative only when useful. A conditional suggestion is useful without operational evidence, but do not invent a bottleneck, responsibility or guarantee. If the current design fits, say so. Ask one focused question only if the answer could materially change the recommendation, and retain settled decisions. Reconsider on new evidence, not pressure to agree.
 
+When the user asks to simplify a diagram for an audience or purpose, narrow the view in the DSL. Use the view description and the existing relationships to keep the flow understandable. See [views.md](references/views.md) for selective exclusions.
+
 Author new relationships at the most specific evidenced level. Preserve explicit relationships at other levels when they express different meanings.
 
 ## Understand and edit
@@ -35,7 +37,7 @@ For a hosted assistant where the application owns checking and preview, use [aut
 | --- | --- |
 | Structure, ownership, supported DSL, shapes, brands | [modeling.md](references/modeling.md) |
 | Descriptions, captions, relationship labels, writing warnings | [writing.md](references/writing.md) |
-| Component, dynamic, sequence, deployment, native code (Miyorgi extension) or image views | [views.md](references/views.md) |
+| Focused views, components, dynamic, sequence, deployment, native code or image views | [views.md](references/views.md) |
 | Viewer controls, presentation or layout diagnosis | [preview.md](references/preview.md) |
 | Missing executable or installation | [tool-setup.md](references/tool-setup.md) |
 
