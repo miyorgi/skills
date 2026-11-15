@@ -5,35 +5,9 @@ description: Create, update, check and preview C4 architecture models using Stru
 
 # Miyorgi C4
 
-Keep architecture in one DSL workspace, normally `workspace.dsl`. The model owns meaning; the binary owns geometry. Do not create a `workspace.json` sidecar or switch renderers. Read the current file before editing; the conversation supplies intent, not a replacement for current source.
+Keep architecture in one DSL workspace, normally `workspace.dsl`. Use the [shared modelling workflow](references/authoring.md#modelling-workflow) for each turn. It tells you when to answer, edit the model, or change only a view. For hosted use, follow the host's response format and let it apply, check, and preview the edits.
 
-## Conversation
-
-Answer first in plain language. For routine edits, default to one or two sentences describing the result, with the check result and preview link or a material limitation. For a simple explanation, give a short overview of the main actors and flow; do not inventory every element and relationship. Expand when the user asks for detail or when a decision needs it.
-
-Omit repeated setup, tool narration, assurances about unchanged parts, and automatic offers of more help. Keep any necessary assumption brief. Ask only the focused clarification needed to resolve a material ambiguity, as described below. Concise replies must still disclose failed checks, missing evidence, or limitations that affect the result; never shorten model descriptions or skip verification to shorten the conversation.
-
-## Architectural collaboration
-
-Treat tentative language and presented alternatives as design discussion. Use the DSL and available evidence to explain how the current design works and what the proposed change would affect. Give a recommendation with the reason it fits this system and the main trade-off. If a missing fact could flip the recommendation, give a conditional answer or ask one focused question after sharing what you can infer. Keep the model intact while the choice is open.
-
-When the user makes the choice or asks for a clear edit, carry it out without asking them to repeat it. Carry forward earlier constraints and decisions. If the chosen design is a proposal, describe it as such. Use names from the diagram in conversation.
-
-When the user asks to simplify a diagram for an audience or purpose, narrow the view in the DSL. Use the view description and the existing relationships to keep the flow understandable. See [views.md](references/views.md) for selective exclusions.
-
-Give every new or revised view a clear title and a short description of its purpose. State deliberate exclusions in the description. When the diagram uses distinct colours, check that its key explains what they mean.
-
-Author new relationships at the most specific evidenced level. Preserve explicit relationships at other levels when they express different meanings.
-
-## Understand and edit
-
-- Infer short requests from the conversation, existing model and evidenced workflow. Reuse elements serving the same role and complete the evidenced flow. Choose only the views needed to answer the user's question; do not impose an architecture pattern.
-- Proceed with a stated, small reversible assumption when meaning is clear. Ask one focused question only when plausible alternatives materially change kind, ownership, scope or interaction. Name the alternatives, complete independent work and carry answers forward.
-- Make the smallest truthful change. Preserve aliases, view keys, declaration/relationship order, unknown properties and unrelated facts. Check dependent relationships, deployment instances and explicit view references when renaming or removing elements.
-- Keep confirmed facts, assumptions and proposals distinct. Never invent responsibilities, protocols or interactions to fill a diagram or silence a warning. Relationships retain the initiating caller's direction even when data returns the other way.
-- Never change ownership, reverse arrows, add coordinates or create workaround views to fix composition. Correct model errors in DSL; report truthful models with poor placement, routing or text as renderer issues.
-
-For a hosted assistant where the application owns checking and preview, use [authoring.md](references/authoring.md) as the compact modelling contract instead of loading the tool workflow and all references. For direct file authoring, read only the reference needed for the change:
+For direct file authoring, read the current DSL and inspect relevant source or configuration when the request refers to implementation. Keep DSL as the editable source, and use Miyorgi for layout. Read only the extra reference needed for the change.
 
 | Change | Reference |
 | --- | --- |
@@ -42,8 +16,6 @@ For a hosted assistant where the application owns checking and preview, use [aut
 | Focused views, components, dynamic, sequence, deployment, native code or image views | [views.md](references/views.md) |
 | Viewer controls, presentation or layout diagnosis | [preview.md](references/preview.md) |
 | Missing executable or installation | [tool-setup.md](references/tool-setup.md) |
-
-Mark separately owned third-party systems with `tags "External"`; being outside a view boundary alone does not make a system third-party. When adding a clearly identified brand, use its primary colour when you can establish it confidently. Preserve existing colours and explicit user choices. See [brand colours](references/modeling.md#brand-colours). An external software system gets `"miyorgi.layoutRole" "actor"` only when it genuinely initiates work on someone's behalf.
 
 ## Check and preview
 
@@ -58,6 +30,8 @@ Substitute the actual file and declared view key. Check after editing; it is rea
 
 If an edit or check fails, reread the relevant DSL and diagnostics. Repair the specific cause, using a unique anchor for ambiguous text replacements, then check again. Allow at most two repair attempts per failed change; stop sooner if facts are missing or the same failure repeats. Preserve or restore only your own failed edits to the last valid state, retaining unrelated user changes. Explain the remaining cause and next step plainly.
 
-Open the URL printed by `serve`, including its access token. Reuse an existing preview for the same file when available. Verify the requested view's ownership, directions, complete captions, shapes and legibility. A successful check alone does not prove visual quality. For renderer issues, retain the DSL, view key, screenshot and expected reading; report what could actually be inspected.
+Open the URL printed by `serve`, including its access token. Reuse an existing preview for the same file when available. Verify the requested view against the [outcome checks](references/authoring.md#outcome-checks), then inspect shapes and legibility. For renderer issues, retain the DSL, view key, screenshot and expected reading. Report what you could inspect.
 
 Finish with the change, check result and preview link or limitation. If the executable is unavailable, continue drafting but state that checking and previewing did not run. The supported DSL is a deliberate subset: unsupported syntax is an explicit capability gap, not permission to fabricate an alternative. Viewer architecture editing and saved Structurizr JSON layout import are unsupported.
+
+If the user asks where to report a Miyorgi problem or suggest an improvement, share the [feedback form](https://miyorgi.com/feedback/?from=skill).

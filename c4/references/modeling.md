@@ -50,7 +50,7 @@ Use one declaration per line and braces on their own closing lines. The compact 
 - `group "Name" { ... }` for a single grouping level; nested groups are unsupported.
 - Element blocks with `tags "Tag1,Tag2"` and `properties { "key" "value" }`, with each property on its own line. Unknown element properties are preserved; duplicate keys fail.
 - `source -> target "Action label" "Technology"`; declare both endpoints first. Technology is optional. Relationship property/style blocks are unsupported.
-- `systemLandscape "Landscape"`, `systemContext systemAlias "Context"`, `container systemAlias "Containers"` and `component containerAlias "Components"`, each with an `include *` block. Use distinct stable view keys. Selective inclusion/exclusion, `autoLayout` and coordinates are unsupported.
+- `systemLandscape "Landscape"`, `systemContext systemAlias "Context"`, `container systemAlias "Containers"` and `component containerAlias "Components"`, each with an `include *` block. Use distinct stable view keys. See [focused views](views.md#focused-views) for supported exclusions. `autoLayout` and coordinates are unsupported.
 - `views { styles { element "Tag" { shape ShapeName } } }`, expanded across lines.
 
 Do not silently translate unsupported constructs into misleading alternatives. A component-shaped container remains a container; declare an actual component inside a container when the evidence establishes that abstraction. State a capability gap if the task needs an unsupported statement.
