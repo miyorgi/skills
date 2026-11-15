@@ -4,6 +4,19 @@ Choose a view for the question being answered. More detail is not automatically
 more useful. Reuse one logical model across views; only deployment instances add
 physical identities. Do not invent components or infrastructure to populate a view.
 
+## Titles, descriptions and keys
+
+Set `title` and `description` in every authored view. Name the system, subject,
+or scenario in the title. Use the description to tell readers what the view
+explains. Describe deliberate exclusions by name or category when they shape
+the picture. The standard scope of a C4 level goes without a list of everything
+outside it.
+
+If the diagram distinguishes elements or relationships by colour, its key should
+explain the coloured groups and how relationship colours work. Verify the key in
+the intended preview or export. If the renderer omits it, flag that limitation
+and include a key alongside the diagram when sharing it.
+
 ## Focused views
 
 Use a static view’s purpose and intended audience to decide what belongs in it.
@@ -19,7 +32,7 @@ customer notifications both belong in a view that explains those flows.
 ```structurizr
 container shop "CheckoutReview" {
     title "Checkout review"
-    description "Shows how shoppers place and pay for an order."
+    description "Shows how shoppers place and pay for an order. Omits operations-only services and the returns portal."
     include *
     exclude "element.tag==OperationsOnly"
     exclude returnsPortal

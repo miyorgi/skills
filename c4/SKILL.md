@@ -21,6 +21,8 @@ When the user makes the choice or asks for a clear edit, carry it out without as
 
 When the user asks to simplify a diagram for an audience or purpose, narrow the view in the DSL. Use the view description and the existing relationships to keep the flow understandable. See [views.md](references/views.md) for selective exclusions.
 
+Give every new or revised view a clear title and a short description of its purpose. State deliberate exclusions in the description. When the diagram uses distinct colours, check that its key explains what they mean.
+
 Author new relationships at the most specific evidenced level. Preserve explicit relationships at other levels when they express different meanings.
 
 ## Understand and edit

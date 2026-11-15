@@ -38,6 +38,8 @@ Write each evidenced relationship at the most specific level you know. Miyorgi u
 
 ## Captions and presentation
 
+Give every authored view a clear `title` and a `description` that explains its purpose. Name deliberate exclusions or their categories in the description. Where distinct colours carry meaning, the published view needs a key that explains them.
+
 Preserve full descriptions. Use a concise source-grounded responsibility sentence; unknown responsibility is better left limited than invented. For a shorter visible caption set `"miyorgi.displayDescription" "..."` in properties; keep essential qualifiers and do not truncate. Boundary captions are optional context, not lists of children. Relationship labels describe a directed action; technology belongs in its separate field. A generic label is honest when only a dependency is known. Writing warnings are advisory.
 
 Apply shapes via tags and `views { styles { element "Tag" { shape ShapeName } } }`. Evidence chooses shape: database `Cylinder`, object storage `Bucket`, directory `Folder`, browser application `WebBrowser`, human `Person`; otherwise preserve the existing/default shape. Supported shapes also include `Box`, `RoundedBox`, `Circle`, `Ellipse`, `Hexagon`, `Diamond`, `Robot`, `Pipe`, `Component`, `Window`, `Terminal`, `Shell`, `MobileDevicePortrait`, `MobileDeviceLandscape`. Shape never changes C4 kind. `"miyorgi.layoutRole" "actor"` is for an external software system genuinely acting as an entry-point actor, not every AI dependency.
