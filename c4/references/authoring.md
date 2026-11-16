@@ -22,7 +22,7 @@ Use this workflow with the current DSL. In a hosted conversation, return the hos
 - The edit follows the user's confirmed intent. Describe proposals as proposals. A request to explore an option leaves the current model intact.
 - Trace the starting interaction. On a new model or a view of a workflow, verify who or what starts it, and include other evidenced participants needed to understand it, such as approvers and recipients. A system, event or schedule may start a flow. Show an external system as software, and leave out people or trigger elements the evidence does not establish. If the missing initiator changes the story, ask who or what starts it.
 - Each new element has an evidenced role and owner. Each new relationship points from the actual initiator or dependent to its target. Preserve existing broader relationships with distinct meanings. Pick a supported shape from each new element’s known role and preserve explicit choices.
-- A changed view has a title and purpose. State deliberate exclusions that affect the story. Retain the entry point and dependencies necessary to follow the flow. Where colours carry meaning, the published view needs a key that explains them.
+- A changed view has a distinct title and a clear purpose. Read the titles together as they will appear in a view picker. State deliberate exclusions that affect the story. Retain the entry point and dependencies necessary to follow the flow. Where colours carry meaning, the published view needs a key that explains them.
 - Use a named group when an evidenced organisation, domain or subsystem connects peers and the boundary helps explain the view. Keep real C4 ownership and vendor separation. Leave incidental similarities ungrouped.
 - Keep layout separate from architecture. Use the renderer for geometry. Keep DSL as the editable source, and report a layout problem without changing facts to disguise it.
 
@@ -53,7 +53,7 @@ Write each evidenced relationship at the most specific level you know. Miyorgi u
 
 ## Captions and presentation
 
-Use the DSL `title` and `description` fields for the view's title and purpose.
+Use the DSL `title` and `description` fields for a view's title and purpose. A title should tell readers what they will see. Pair the subject with the C4 level, workflow, or environment that distinguishes it, such as “Three Tier System — Context”, “Three Tier System — Containers”, “Checkout — Payment sequence”, or “Checkout — Production deployment”. When views at the same level share a subject, name the different audiences or scopes. Preserve explicit titles when they already distinguish the views and keep view keys stable when editing titles.
 
 Preserve full descriptions. Use a concise source-grounded responsibility sentence; unknown responsibility is better left limited than invented. For a shorter visible caption set `"miyorgi.displayDescription" "..."` in properties; keep essential qualifiers and do not truncate. Boundary captions are optional context, not lists of children. Relationship labels describe a directed action; technology belongs in its separate field. A generic label is honest when only a dependency is known. Writing warnings are advisory.
 
