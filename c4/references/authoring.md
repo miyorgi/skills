@@ -39,11 +39,11 @@ Use this workflow with the current DSL. In a hosted conversation, return the hos
 
 A Person is a human role; a software system is a cohesive capability boundary; a Container is an independently running application or data store within a system; a Component is an internal responsibility within a container. Hosting by a cloud vendor alone does not make a managed database an external system. Groups express organization, not ownership. Relationships point from the initiator/dependent to the target even when data returns the other way.
 
-Use one declaration per line, closing braces on separate lines, and declare endpoints before relationships. The compact forms below illustrate syntax only; expand blocks across lines.
+Use one statement per line and put closing braces on separate lines. Declare endpoints before relationships. Check that each closing brace ends the intended block.
 
 - `workspace "Name" { model { ... } views { ... } }`
 - `alias = person "Name" "Description"` or `alias = softwareSystem "Name" "Description"` inside model.
-- `alias = container "Name" "Description" "Technology"` inside its software system; `alias = component "Name" "Description" "Technology"` inside its container. Omit unknown technology.
+- Open the owning software system's block before declaring `alias = container "Name" "Description" "Technology"`. Open the owning container's block before declaring `alias = component "Name" "Description" "Technology"`. Omit unknown technology.
 - Element blocks support `tags "Tag1,Tag2"` and `properties { "key" "value" }`, one property per line. Preserve unknown properties; duplicate keys fail.
 - `source -> target "Action label" "Technology"`; technology is optional. Relationship property/style blocks are unsupported.
 - `group "Name" { ... }` supports one grouping level.
@@ -53,7 +53,7 @@ Write each evidenced relationship at the most specific level you know. Miyorgi u
 
 ## Captions and presentation
 
-Use the DSL `title` and `description` fields for a view's title and purpose. A title should tell readers what they will see. Pair the subject with the C4 level, workflow, or environment that distinguishes it, such as “Three Tier System — Context”, “Three Tier System — Containers”, “Checkout — Payment sequence”, or “Checkout — Production deployment”. When views at the same level share a subject, name the different audiences or scopes. Preserve explicit titles when they already distinguish the views and keep view keys stable when editing titles.
+Set a view's `title` and `description`. Pair the subject with its level, workflow, or environment, such as “Checkout — Containers” or “Checkout — Payment sequence”. If views still share a title, distinguish their audiences or scopes. Keep existing distinct titles and view keys.
 
 Preserve full descriptions. Use a concise source-grounded responsibility sentence; unknown responsibility is better left limited than invented. For a shorter visible caption set `"miyorgi.displayDescription" "..."` in properties; keep essential qualifiers and do not truncate. Boundary captions are optional context, not lists of children. Relationship labels describe a directed action; technology belongs in its separate field. A generic label is honest when only a dependency is known. Writing warnings are advisory.
 
