@@ -23,6 +23,7 @@ Use this workflow with the current DSL. In a hosted conversation, return the hos
 - Trace the starting interaction. On a new model or a view of a workflow, verify who or what starts it, and include other evidenced participants needed to understand it, such as approvers and recipients. A system, event or schedule may start a flow. Show an external system as software, and leave out people or trigger elements the evidence does not establish. If the missing initiator changes the story, ask who or what starts it.
 - Each new element has an evidenced role and owner. Each new relationship points from the actual initiator or dependent to its target. Preserve existing broader relationships with distinct meanings. Pick a supported shape from each new element’s known role and preserve explicit choices.
 - A changed view has a title and purpose. State deliberate exclusions that affect the story. Retain the entry point and dependencies necessary to follow the flow. Where colours carry meaning, the published view needs a key that explains them.
+- Use a named group when an evidenced organisation, domain or subsystem connects peers and the boundary helps explain the view. Keep real C4 ownership and vendor separation. Leave incidental similarities ungrouped.
 - Keep layout separate from architecture. Use the renderer for geometry. Keep DSL as the editable source, and report a layout problem without changing facts to disguise it.
 
 ## Common decisions

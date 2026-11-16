@@ -23,6 +23,12 @@ Use user statements, existing model facts and inspected source/configuration to 
 
 A container belongs inside its owning software system. An external software system stays outside that boundary even when tightly integrated. A group expresses an evidenced organizational grouping; it is not a substitute for a system's container boundary and does not change C4 kind or ownership. Never infer ownership or stronger relatedness from drawn proximity. Layout and alignment belong to the binary.
 
+### Groups
+
+Use a named `group` when the view benefits from knowing which peers belong together: for example, two products operated by one company in a system landscape, or containers in a known subsystem. Use the real company, domain or subsystem name. Keep unrelated systems, third-party providers and people outside unless the evidence puts them inside. Preserve authored groups and use kinds and ownership to place their members at the right C4 level. Avoid introducing groups just for layout or a shared technology. Verify the group boundary is visible and meaningful at the selected level.
+
+The [Structurizr cookbook](https://docs.structurizr.com/dsl/cookbook/groups/) demonstrates organisational boundaries on a landscape. The [notation guide](https://docs.structurizr.com/ui/diagrams/notation#boundaries-and-groups) distinguishes peer groups from the software system and container boundaries that indicate C4 scope. Use one grouping level for Miyorgi compatibility.
+
 Relationships express the intended interaction or dependency. Preserve the actor or caller initiating it even when data returns in the opposite direction. Do not infer physical data flow, protocol or a reverse interaction from an arrow alone. Missing facts warrant a question when they materially affect kind, ownership, scope or interaction; otherwise retain the known facts and state the uncertainty without inventing detail.
 
 ## Human and software actors
