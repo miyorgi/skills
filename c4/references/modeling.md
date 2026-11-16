@@ -27,6 +27,8 @@ Relationships express the intended interaction or dependency. Preserve the actor
 
 ## Human and software actors
 
+For new models and workflow views, trace how the interaction starts. Include the primary initiator and the other evidenced roles needed to understand the flow: a requester, approver or notification recipient, for example. On system context views, show those people and systems and their interactions with the system in scope. Narrower views show only the participants that matter to their purpose. An upstream system can initiate work, and an internal timer can start a flow with no external actor. Do not invent a human or standalone scheduler. Ask one focused question if who or what initiates the interaction is unknown and changes the meaning of the view.
+
 An external AI assistant that acts on an author's behalf can remain a software system while taking an actor position in the diagram. When the described architecture establishes this role, add `"miyorgi.layoutRole" "actor"` to that software system's properties. People already receive actor layout. The property changes placement, not kind, ownership or shape; an AI service used as an ordinary dependency should not receive it merely because it uses AI. A `Robot` shape alone does not establish the role.
 
 Preserve who initiates the workflow. For human → assistant → tools, the human leads and the assistant follows. For an autonomous assistant initiating work, the assistant can lead. Retain actual relationship directions and dynamic response markers so return messages do not reverse this order. Do not add relationships or turn software into a Person to force prominence. The layout engine chooses positions from these facts.
@@ -57,7 +59,7 @@ Do not silently translate unsupported constructs into misleading alternatives. A
 
 ## Shape mapping
 
-Apply shapes through tags and element shape styles. Match inspected architecture facts or explicit source notation, such as `ContainerDb`, to a shape; do not guess from a name alone.
+Proactively pick shapes for new elements based on their known roles. Apply them through tags and element shape styles. Preserve explicit choices and keep the default for an unclear role. Use architecture facts or explicit source notation, such as `ContainerDb`; a name alone is not evidence. Check the rendered view to confirm the chosen shapes appear.
 
 | Evidence | Shape |
 | --- | --- |
@@ -66,6 +68,7 @@ Apply shapes through tags and element shape styles. Match inspected architecture
 | Object-storage bucket | `Bucket` |
 | Filesystem directory | `Folder` |
 | Application running in a browser | `WebBrowser` |
+| Known queue or event stream | `Pipe` |
 | AI assistant represented as a software actor | `Robot` when appropriate to the user's notation |
 | No specific presentation evidence | Default rounded box; preserve any explicit shape |
 
