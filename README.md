@@ -71,3 +71,8 @@ Miyorgi C4 is under active development. Treat the skill, supported DSL subset, a
 The skill checks for the native tool before validation or preview. If it is
 missing, the skill gives Homebrew installation instructions for macOS. The normal
 model source is a single workspace.dsl file; a workspace.json sidecar is not required.
+
+## Licence
+
+The [C4 skill](c4/) is available under the [MIT License](c4/LICENSE).
+The separately distributed Miyorgi C4 CLI has its own licence.

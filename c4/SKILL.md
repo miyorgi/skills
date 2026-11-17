@@ -30,8 +30,10 @@ Substitute the actual file and declared view key. Check after editing; it is rea
 
 If an edit or check fails, reread the relevant DSL and diagnostics. Repair the specific cause, using a unique anchor for ambiguous text replacements, then check again. Allow at most two repair attempts per failed change; stop sooner if facts are missing or the same failure repeats. Preserve or restore only your own failed edits to the last valid state, retaining unrelated user changes. Explain the remaining cause and next step plainly.
 
-Open the URL printed by `serve`, including its access token. Reuse an existing preview for the same file when available. Verify the requested view against the [outcome checks](references/authoring.md#outcome-checks), then inspect shapes and legibility. For renderer issues, retain the DSL, view key, screenshot and expected reading. Report what you could inspect.
+Reuse an existing preview for the same file when available. Use the full URL printed by `serve`, including its access token. In a desktop coding agent with a preview pane, open the URL in that pane. If you cannot control the pane, give the user a clickable link to open there. Launch a separate browser only if the user requests it or you are in a terminal-only host.
+
+Verify the requested view against the [outcome checks](references/authoring.md#outcome-checks), then inspect shapes and legibility. For renderer issues, retain the DSL, view key, screenshot and expected reading. Report what you could inspect.
 
 Finish with the change, check result and preview link or limitation. If the executable is unavailable, continue drafting but state that checking and previewing did not run. The supported DSL is a deliberate subset: unsupported syntax is an explicit capability gap, not permission to fabricate an alternative. Viewer architecture editing and saved Structurizr JSON layout import are unsupported.
 
-If the user asks where to report a Miyorgi problem or suggest an improvement, share the [feedback form](https://miyorgi.com/feedback/?from=skill).
+If the user asks where to report a Miyorgi problem or suggest an improvement, share the [feedback page](https://miyorgi.com/feedback/).
