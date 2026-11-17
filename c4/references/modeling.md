@@ -58,7 +58,7 @@ Use one declaration per line and braces on their own closing lines. The compact 
 - `group "Name" { ... }` for a single grouping level; nested groups are unsupported.
 - Element blocks with `tags "Tag1,Tag2"` and `properties { "key" "value" }`, with each property on its own line. Unknown element properties are preserved; duplicate keys fail.
 - `source -> target "Action label" "Technology"`; declare both endpoints first. Technology is optional. Relationship property/style blocks are unsupported.
-- `systemLandscape "Landscape"`, `systemContext systemAlias "Context"`, `container systemAlias "Containers"` and `component containerAlias "Components"`, each with an `include *` block. Use distinct stable view keys. See [focused views](views.md#focused-views) for supported exclusions. `autoLayout` and coordinates are unsupported.
+- `systemLandscape "Landscape"`, `systemContext systemAlias "Context"`, `container systemAlias "Containers"` and `component containerAlias "Components"`, each with an `include *` block. Use distinct stable view keys. See [focused views](views.md#focused-views) for supported exclusions. Leave layout direction to Miyorgi by default. Preserve an existing `autoLayout` direction or add one if the user explicitly asks for it. Coordinates are unsupported.
 - `views { styles { element "Tag" { shape ShapeName } } }`, expanded across lines.
 
 Do not silently translate unsupported constructs into misleading alternatives. A component-shaped container remains a container; declare an actual component inside a container when the evidence establishes that abstraction. State a capability gap if the task needs an unsupported statement.
@@ -103,11 +103,12 @@ palette or neutral styling, takes priority. Use the palette's designated primary
 colour when one is given. Preserve colours already set in the DSL unless the
 user asks to update them.
 
-When adding or identifying a real company, product or service, automatically
-look for its primary brand colour. Confirm the identity from the model and
-conversation, then prefer the owner's brand guidelines or official assets when
-lookup is available. Use a confidently known primary colour if lookup is
-unavailable. Otherwise use neutral grey and continue. A generic provider,
+When creating or updating a view, check the brand of any visible named company
+or product with no colour set, including existing third-party systems. Confirm
+the product identity from the model and conversation. Use its official primary
+colour, or sample a representative hue from its official logo or product icon
+when the asset uses multiple colours. Use a confidently known colour if lookup
+is unavailable. Otherwise use neutral grey and continue. A generic provider,
 fictional name, ambiguous brand or technology choice alone does not establish
 a brand. For example, hosting a bank's API on AWS leaves the API in the bank's
 palette. Ask about a palette only when the user wants a specific treatment and
@@ -130,13 +131,9 @@ software system once its brand colour is supplied or established. Preserve the
 container they instantiate in deployment views. Older binaries, including
 0.1.0-beta.2, may still inherit workspace colours for `External`; verify the
 actual preview before claiming this neutral treatment is available.
-Actors using more than one distinct owning software system stay grey, even if
-the systems share the same brand or the workspace has a default brand. Multiple
-connections to containers of one system count as one system. For one system,
-an actor can inherit its brand. Set the actor's own brand property for an
-explicit override. This applies to people and software systems marked with
-`miyorgi.layoutRole` = `actor`. The rule uses the complete model so changing
-views does not recolour actors.
+People and software systems marked with `miyorgi.layoutRole` = `actor` stay
+neutral by default. Set `miyorgi.brandColor` on the actor only when the user
+explicitly wants that actor branded.
 
 All C4 levels use one brand scheme, with white interiors and no depth shading.
 The supplied base colour is used for outlines and text when legible against
